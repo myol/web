@@ -10,7 +10,7 @@
     "jade": "^1.3.1",
     "stylus": "^0.41.3",
     "underscore": "*",
-    "connect-mongo": "*",
+    "connect-mongo": "~0.4.0",
     "async": "*",
     "jade-browser": "*",
     "moment": "*",
@@ -18,6 +18,13 @@
     "static-favicon": "^1.0.2",
     "cookie-parser": "^1.0.1",
     "morgan": "^1.0.0",
-    "body-parser": "^1.0.1"
+    "body-parser": "^1.0.1",
+    "express-session": "~1.0.2",
+    "compression": "~1.0.1",
+    "passport": "~0.2.0",
+    "passport-facebook": "~1.0.3",
+    "lusca": "~1.0.0",
+    "mongoose": "~3.8.8",
+    "method-override": "~1.0.0"
   }
 }

@@ -2,3 +2,4 @@
 node_modules
 public/css/app.css
 bower_components
+config.json
