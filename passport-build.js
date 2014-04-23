@@ -3,9 +3,9 @@
 	var passport = require('passport');
 	var FacebookStrategy = require('passport-facebook').Strategy
 	passport.use(new FacebookStrategy({
-			clientID: conf.client_id,
-			clientSecret: conf.secret,
-			callbackURL: conf.callback
+			clientID: conf.fb.client_id,
+			clientSecret: conf.fb.secret,
+			callbackURL: conf.fb.callback
 		},
 		function(accessToken, refreshToken, profile, done) {
 			User.findOne({fbid:profile.id}, function(err, user){

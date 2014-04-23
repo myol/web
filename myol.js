@@ -13,6 +13,8 @@ var https = require('https');
 var fs = require('fs');
 var methodOverride = require('method-override');
 var conf = require('./config');
+var jade_browser = require('jade-browser');
+
 //DB
 var db_path = "mongodb://127.0.0.1:27017/myol";
 mongoose = require('mongoose');
@@ -33,6 +35,7 @@ app.set('view engine', 'jade');
 app.enable('trust proxy')
 app.disable('x-powered-by')
 app.use(favicon());
+app.use(require('stylus').middleware({ src: __dirname + '/public' }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 app.use(logger('dev'));
@@ -48,13 +51,14 @@ app.use(function(req, res, next){
   	res.header('Vary', 'Accept');
 	next();
 });	
+app.use(jade_browser('/secret-templates.js', '**', {root: __dirname + '/views/secret/', noCache:true})); 
 app.use(compress({
         filter: function (req, res) {
           return /json|text|javascript|css/.test(res.getHeader('Content-Type'))
         },
         level: 9
       }));
-app.use(require('stylus').middleware({ src: __dirname + '/public' }));
+
 
 
 app.use('/', routes);
@@ -67,7 +71,6 @@ app.get('/logout', function(req, res){
 	req.logout();
 	res.redirect('/');
 });
-
 app.use('/secret', require('./lib/admin'));
 
 /// catch 404 and forwarding to error handler
@@ -112,7 +115,7 @@ module.exports = app;
 
 app.listen(3000);
 https.createServer({
-  key: fs.readFileSync('./www.myol.mv.key'),
-  cert: fs.readFileSync('./www.myol.mv.crt')
+  key: fs.readFileSync('./tests/www.myol.mv.key'),
+  cert: fs.readFileSync('./tests/www.myol.mv.crt')
 }, app).listen(443);
 

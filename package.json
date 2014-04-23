@@ -12,7 +12,7 @@
     "underscore": "*",
     "connect-mongo": "~0.4.0",
     "async": "*",
-    "jade-browser": "*",
+    "jade-browser": "0.0.14",
     "moment": "*",
     "underscore.string": "*",
     "static-favicon": "^1.0.2",
